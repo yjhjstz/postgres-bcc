@@ -131,10 +131,10 @@ def attach(bpf, args):
         fn_name="probe_exec_simple_query_finish",
         pid=args.pid)
 
-    bpf.attach_kprobe(event="sys_sendto", fn_name="on_send")
-    bpf.attach_kprobe(event="sys_send", fn_name="on_send")
-    bpf.attach_kprobe(event="sys_recvfrom", fn_name="on_recv")
-    bpf.attach_kprobe(event="sys_recv", fn_name="on_recv")
+    bpf.attach_kprobe(event="__x64_sys_sendto", fn_name="on_send")
+    bpf.attach_kprobe(event="__x64_sys_send", fn_name="on_send")
+    bpf.attach_kprobe(event="__x64_sys_recvfrom", fn_name="on_recv")
+    bpf.attach_kprobe(event="__x64_sys_recv", fn_name="on_recv")
 
 
 def pre_process(text, args):

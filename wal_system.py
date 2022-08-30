@@ -99,7 +99,7 @@ def attach(bpf, args):
         fn_name="probe_exec_simple_query_finish",
         pid=args.pid)
     bpf.attach_kprobe(
-        event="sys_pwrite64",
+        event="__x64_sys_pwrite64",
         fn_name="syscall__pwrite")
 
 
