@@ -52,8 +52,7 @@ void probe_spin_lock_wait_start(struct pt_regs *ctx, volatile slock_t *lock,
     struct spin_lock *test = lock_wait.lookup(&pid);
     if (test != 0)
     {
-        struct message msg = {};
-        strcpy(msg.text, "Lock is overwritten");
+        struct message msg = {"Lock is overwritten"};
         messages.perf_submit(ctx, &msg, sizeof(msg));
     }
 
@@ -69,8 +68,7 @@ void probe_spin_lock_wait_finish(struct pt_regs *ctx, volatile slock_t *lock,
 
     if (wait_data == 0)
     {
-        struct message msg = {};
-        strcpy(msg.text, "Lock is missing");
+        struct message msg = {"Lock is missing"};
         messages.perf_submit(ctx, &msg, sizeof(msg));
         return;
     }
